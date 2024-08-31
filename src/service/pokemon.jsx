@@ -19,7 +19,13 @@ export const reqPoke = async(pokemon) => {
         habilidad: abilities.ability.name
     }))
 
-    const infoPoke = [nombre,imagen,estadisticas,habilidades]
+    const infoPoke = {
+      nombre,
+      imagen,
+      estadisticas,
+      habilidades
+    };
+
     return infoPoke
   } catch (err) {
     console.log(err)

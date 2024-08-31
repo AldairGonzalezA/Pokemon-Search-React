@@ -1,38 +1,41 @@
-import { useState } from "react"
-import { usePokemon } from "../hooks/usePokemon"
+import { useState } from "react";
+import { usePokemon } from "../hooks/usePokemon";
 
-export const ContenedorPokemon = ({infoPoke}) => {
+export const ContenedorPokemon = ({ infoPoke }) => {
+
+  // Desestructuración de las propiedades de infoPoke
+  const { nombre, imagen, estadisticas, habilidades } = infoPoke;
+
   return (
-    <>
-      <div className="d-flex flex-row justify-content-center alig-items-center row row-cols-2 p-2">
-      {
-        infoPoke.map(({nombre,imagen,estadisticas,habilidades})=>{
-            return(
-                <div className="card" style="width: 18rem;">
-            <img src={imagen} alt="" />
-            <div className="card-body">
-                <h5 className="card-title">Nombre</h5>
-                <p className="card-text">{nombre}</p>
-            </div>
-            <ul class="list-group list-group-flush">
-                {
-                    estadisticas.map(({nombre,base})=>{
-                        <li className="list-group-item">{nombre}{base}</li>
-                        
-                    })
-                }
+    <div className="d-flex flex-row justify-content-center align-items-center row row-cols-2 p-2">
+      <div className="card" style={{ width: "18rem" }}>
+        {imagen && <img src={imagen} className="card-img-top" alt={`${nombre} sprite`} />}
+        <div className="card-body">
+          <h5 className="card-title">Pokemon: {nombre}</h5>
+          {estadisticas && estadisticas.length > 0 && (
+            <ul className="list-group list-group-flush">
+              <li className="list-group-item"><strong>Estadísticas:</strong></li>
+              {estadisticas.map((estadisticas) => (
+                <li key={estadisticas.nombre} className="list-group-item">
+                  {estadisticas.nombre}  {estadisticas.base}
+                </li>
+              ))}
             </ul>
-            <div className="card-body">
-                <a href="#" className="card-link">Card link</a>
-                <a href="#" className="card-link">Another link</a>
-            </div>
-            </div>
-            )
-        })
-      }
+          )}
+          {habilidades && habilidades.length > 0 && (
+            <ul className="list-group list-group-flush">
+              <li className="list-group-item"><strong>Habilidades:</strong></li>
+              {habilidades.map((habilidades) => (
+                <li key={habilidades.habilidad} className="list-group-item">
+                  {habilidades.habilidad}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </div>
-    </>
-  )
-}
+    </div>
+  );
+};
 
 
