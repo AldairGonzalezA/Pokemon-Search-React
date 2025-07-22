@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { usePokemon } from "../hooks/usePokemon";
 
+
+// eslint-disable-next-line react/prop-types
 export const ContenedorPokemon = ({ infoPoke }) => {
 
-  // Desestructuración de las propiedades de infoPoke
+  // eslint-disable-next-line react/prop-types
   const { nombre, imagen, estadisticas, habilidades } = infoPoke;
 
   return (
